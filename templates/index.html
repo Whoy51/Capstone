@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
 
     <title>Flask</title>
+
 </head>
 <body>
     <h1>Hello</h1>
+    {% if name %}
+    <h1>Hello {{ name }}!</h1>
+    {% endif %}
+
+    {% if db %}
+    {% for item in names %}
+    <h2>{{ item }}</h2>
+    {% endfor %}
+    <h2>{{ db }}</h2>
+    {% endif %}
+
 </body>
 </html>
