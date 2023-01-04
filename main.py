@@ -1,35 +1,41 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 
 app = Flask(__name__)
 
 con = sqlite3.connect("data.db")
 cur = con.cursor()
-
 cur.execute("CREATE TABLE IF NOT EXISTS person(name, age)")
 
-name = input("Name of person: ")
-age = input("Age of person: ")
 
-cur.executemany("""INSERT INTO person VALUES (?, ?)""", [(name, age)])
+# cur.executemany("""INSERT INTO person VALUES (?, ?)""", [(name, age)])
+# res = cur.execute("SELECT name FROM person")
 
-con.commit()
-
-res = cur.execute("SELECT name FROM person")
-
-names = res.fetchall()
-
-res = cur.execute("SELECT age FROM person")
-
-age = res.fetchall()
+def post():
+    print("post")
 
 
-print(names)
-print(age)
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] == 'admin' or request.form['password'] == 'admin':
+            return redirect(url_for('admin'))
+        elif request.form['username'] == 'test' and request.form['password'] == 'test':
+            return redirect(url_for('student'))
+        else:
+            error = "Invalid Credentials"
+    return render_template('index.html', error=error)
 
-@app.route('/')
-def hello():
-    return render_template('index.html', name=name, db=[names, age], names=names)
+
+@app.route('/admin')
+def admin():
+    return render_template('admin.html')
+
+
+@app.route('/student')
+def student():
+    return render_template('student.html')
 
 
 if __name__ == '__main__':
