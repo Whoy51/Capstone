@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 con = sqlite3.connect("data.db")
 cur = con.cursor()
-cur.execute("CREATE TABLE IF NOT EXISTS person(name, age)")
+cur.execute("CREATE TABLE IF NOT EXISTS users(studentid, name, teacher)")
 
 
 # cur.executemany("""INSERT INTO person VALUES (?, ?)""", [(name, age)])
@@ -19,13 +19,22 @@ def post():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] == 'admin' or request.form['password'] == 'admin':
+        if request.form['studentid'] == 'admin' or request.form['password'] == 'admin':
             return redirect(url_for('admin'))
-        elif request.form['username'] == 'test' and request.form['password'] == 'test':
+        elif request.form['studentid'] == 'test' and request.form['password'] == 'test':
             return redirect(url_for('student'))
         else:
             error = "Invalid Credentials"
     return render_template('index.html', error=error)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        print(request.form['studentid'])
+        print(request.form['teacher'])
+        return render_template('register.html', message="Registration Success!")
+    return render_template('register.html')
 
 
 @app.route('/admin')

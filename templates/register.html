@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+    <h1>Please register an Account</h1>
+    <p>This will only take a few seconds</p>
+
+    <form action="" method="post">
+        <input type="text" placeholder="StudentID" name="studentid" value="{{
+        request.form.studentid }}">
+        <select name = "teachers">
+          <option value = "{{ request.form.teacher }}" selected>Mr. Jacoby</option>
+          <option value = "{{ request.form.teacher }}">Ms. Guo</option>
+        </select>
+        <input class="btn btn-default" type="submit" value="Login">
+    </form>
+
+    {% if message %}
+    <h2>{{ message }}</h2>
+    {% endif %}
+</body>
+</html>
