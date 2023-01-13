@@ -5,21 +5,24 @@
     <title>Register</title>
 </head>
 <body>
-    <h1>Please register an Account</h1>
+    <h1>Please register an account</h1>
     <p>This will only take a few seconds</p>
 
     <form action="" method="post">
+        <input type="text" placeholder="Name" name="name" value="{{
+        request.form.name }}">
         <input type="text" placeholder="StudentID" name="studentid" value="{{
         request.form.studentid }}">
         <select name = "teachers">
-          <option value = "{{ request.form.teacher }}" selected>Mr. Jacoby</option>
-          <option value = "{{ request.form.teacher }}">Ms. Guo</option>
+          <option value = "Mr. Jacobi" selected>Mr. Jacoby</option>
+          <option value = "Ms. Guo">Ms. Guo</option>
         </select>
         <input class="btn btn-default" type="submit" value="Login">
     </form>
 
     {% if message %}
     <h2>{{ message }}</h2>
+    <h2><a href="./index">Click here</a> to login</h2>
     {% endif %}
 </body>
 </html>

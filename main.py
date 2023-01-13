@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 con = sqlite3.connect("data.db")
 cur = con.cursor()
-cur.execute("CREATE TABLE IF NOT EXISTS users(studentid, name, teacher)")
+cur.execute("CREATE TABLE IF NOT EXISTS users(name, studentid,  teacher)")
 
 
 # cur.executemany("""INSERT INTO person VALUES (?, ?)""", [(name, age)])
@@ -31,8 +31,9 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+        print(request.form['name'])
         print(request.form['studentid'])
-        print(request.form['teacher'])
+        print(request.form['teachers'])
         return render_template('register.html', message="Registration Success!")
     return render_template('register.html')
 
