@@ -45,15 +45,9 @@ def register():
             if teachers == "Unselected":
                 s += "teachers "
             return render_template('register.html', message="Error: Please fill out the highlighted fields", missing=s)
-        move(5, '/')
-        return render_template('register.html', message="Success! Redirecting in 5 seconds...")
+        return redirect('/')
     else:
         return render_template('register.html')
-
-
-def move(seconds, dest):
-    time.sleep(seconds)
-    redirect(dest)
 
 
 @app.route('/admin')
