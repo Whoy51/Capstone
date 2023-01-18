@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for
+import time
 import sqlite3
 
 app = Flask(__name__)
@@ -31,11 +32,28 @@ def login():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        print(request.form['name'])
-        print(request.form['studentid'])
-        print(request.form['teachers'])
-        return render_template('register.html', message="Registration Success!")
-    return render_template('register.html')
+        name = request.form['name']
+        studentid = request.form['studentid']
+        teachers = request.form['teachers']
+
+        if teachers == "Unselected" or len(name) == 0 or len(studentid) == 0:
+            s = " "
+            if len(name) == 0:
+                s += "name "
+            if len(studentid) == 0:
+                s += "studentid "
+            if teachers == "Unselected":
+                s += "teachers "
+            return render_template('register.html', message="Error: Please fill out the highlighted fields", missing=s)
+        move(5, '/')
+        return render_template('register.html', message="Success! Redirecting in 5 seconds...")
+    else:
+        return render_template('register.html')
+
+
+def move(seconds, dest):
+    time.sleep(seconds)
+    redirect(dest)
 
 
 @app.route('/admin')
