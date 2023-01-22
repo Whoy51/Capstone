@@ -8,41 +8,20 @@
     <h1>Please register an account</h1>
     <p>This will only take a few seconds</p>
 
-    <form action="" method="post">
-        <input type="text" class="form" id="name" placeholder="Name" name="name" value="{{
-        request.form.name }}">
-        <input type="text" class="form" id="studentid" placeholder="StudentID" name="studentid" value="{{
-        request.form.studentid }}">
-        <select id="teachers" class="form" name = "teachers">
-            <option value = "Unselected" selected>Please select a teacher</option>
-            <option value = "Mr. Jacobi">Mr. Jacoby</option>
-            <option value = "Ms. Guo">Ms. Guo</option>
-        </select>
-        <input class="btn btn-default" type="submit" value="Register">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        {{ form.studentid }}
+        {{ form.name }}
+        {{ form.teacher }}
+        {{ form.submit }}
     </form>
 
     {% if message %}
     <h2>{{ message }}</h2>
-    <h2><a href="./">Click here</a> to login</h2>
     {% endif %}
+    <a href="{{ url_for('login') }}">Already have an account? Log In</a>
 </body>
 <style type="text/css">
-    {% if 'teachers' in missing %}
-        #teachers{
-            border-color:red;
-        }
-    {% endif %}
-    {% if 'student' in missing %}
-        #studentid{
-            border-color:red;
-        }
-    {% endif %}
-    {% if 'name' in missing %}
-        #name{
-            border-color:red;
-        }
-    {% endif %}
-
     .form{
         border: 2px solid black;
     }

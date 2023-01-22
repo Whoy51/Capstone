@@ -10,17 +10,17 @@
     <h1>Welcome to Math Center</h1>
 
     <form action="" method="post">
-        <input type="text" placeholder="StudentID" name="studentid" value="{{
-        request.form.studentid }}">
-        <input type="password" placeholder="Password" name="password" value="{{
-        request.form.password }}">
-        <input class="btn btn-default" type="submit" value="Login">
+        {{ form.hidden_tag() }}
+        {{ form.studentid }}
+        {{ form.password }}
+        {{ form.submit }}
     </form>
 
     {% if error %}
     <h3>{{ error }} </h3>
-    <h3>If you do not own an account, please <a href="./register">register</a> an account</h3>
+
     {% endif %}
+    <a href="{{ url_for('register') }}">Don't have an account? Sign Up</a>
 
 </body>
 </html>
