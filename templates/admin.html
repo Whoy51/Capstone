@@ -7,10 +7,14 @@
 <body>
     <h1>Admin Dashboard</h1>
     <div>
-        <canvas id="barChart" width="200" height="200"></canvas>
-    </div>
-    <div>
-        <canvas id="pieChart" width="200" height="200"></canvas>
+        <div style="float: left">
+
+            <canvas id="pieChart" width="500" height="500"></canvas>
+        </div>
+        <div style="float: right">
+            <p>More information:</p>
+        </div>
+
     </div>
 </body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
@@ -21,7 +25,12 @@
           "#00aba9",
           "#2b5797",
           "#e8c3b9",
-          "#1e7145"
+        ];
+        var hoverColors = [
+            "#801531",
+            "#0b6564",
+            "#1a355b",
+            "#7c6d68",
         ];
 
         new Chart("pieChart", {
@@ -29,8 +38,9 @@
           data: {
             labels: ["Mr. Jacoby", "Ms. Guo", "Mr. Coster", "Ms. Zhang"],
             datasets: [{
-              backgroundColor: barColors,
-              data: [2, 5, 7, 3]
+                backgroundColor: barColors,
+                hoverBackgroundColor: hoverColors,
+                data: [2, 5, 7, 3]
             }]
           },
           options: {
