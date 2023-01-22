@@ -16,69 +16,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <script>
 
-        const ctx = document.getElementById('barChart').getContext("2d");
+        var barColors = [
+          "#b91d47",
+          "#00aba9",
+          "#2b5797",
+          "#e8c3b9",
+          "#1e7145"
+        ];
 
-        const myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Mr. Jacoby", "Ms. Guo"],
-                datasets: [{
-                    label: 'Number of Students',
-                    data: [2, 5],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
+        new Chart("pieChart", {
+          type: "pie",
+          data: {
+            labels: ["Mr. Jacoby", "Ms. Guo", "Mr. Coster", "Ms. Zhang"],
+            datasets: [{
+              backgroundColor: barColors,
+              data: [2, 5, 7, 3]
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: "Teachers"
             }
+          }
         });
-        myChart.render();
-
-        const ctx2 = document.getElementById('pieChart').getContext("2d");
-
-        const myPieChart = new Chart(ctx2, {
-            type: 'pie',
-            data: {
-                labels: ["Mr. Jacoby", "Ms. Guo"],
-                datasets: [{
-                    label: 'Number of Students',
-                    data: [2, 5],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)',
-                        'rgba(54, 162, 235, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero:true
-                        }
-                    }]
-                }
-            }
-        });
-        myPieChart.render();
 
     </script>
 </html>

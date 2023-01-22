@@ -5,6 +5,6 @@ Math Center Portal is designed to help teachers track the students who use the M
 ## Technologies used
 
 - Flask (Python)
-- SQLite (SQL)
+- SQAlchemy (SQL)
 - Jinga (HTML)
 - Chart.js (JS)
